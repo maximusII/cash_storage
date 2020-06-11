@@ -51,7 +51,7 @@ const MainComponent = function () {
 
   return (
     <div className={styles.container}>
-      Cash Storage
+      <h1>Cash Storage</h1>
       <form className={styles.form} onSubmit={formSubmitHandler}>
         <label>
           <input
