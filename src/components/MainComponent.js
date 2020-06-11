@@ -16,7 +16,7 @@ const setKey = function (key, value) {
   if (cash.length < 2) {
     cash.push({ [key]: value });
   } else {
-    cash.shift();
+    cash.splice(0, cash.length - 1);
     cash.push({ [key]: value });
   }
 };
@@ -33,15 +33,19 @@ const MainComponent = function () {
   };
 
   const formChangeHandler = function (e) {
-    e.target.name === "key"
-      ? setFormData(Object.assign({ ...formData }, { key: e.target.value }))
-      : setFormData(Object.assign({ ...formData }, { value: e.target.value }));
+    setFormData(
+      Object.assign(
+        { ...formData },
+        e.target.name === "key"
+          ? { key: e.target.value }
+          : { value: e.target.value }
+      )
+    );
   };
 
   const formSubmitHandler = function (e) {
     e.preventDefault();
     setKey(formData.key, formData.value);
-    console.log(formData.key, formData.value);
     setFormData({ key: "", value: "" });
   };
 
